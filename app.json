@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "QuizBolt",
+    "slug": "BrainBolt",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/QuizBolt.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/QuizBolt.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#6a5be2"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/QuizBolt.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.evegendelacruz.QuizBolt"
+    },
+    "web": {
+      "favicon": "./assets/QuizBolt.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font"
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "78cc40e4-345e-401b-b08a-7e6b912a5e70"
+      }
+    },
+    "owner": "evegendelacruz"
+  }
+}
