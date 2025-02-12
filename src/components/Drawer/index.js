@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from "react";
-import { View, Image, Text, StyleSheet, TouchableOpacity, Modal,} from 'react-native';
-import { DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer';
-import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
+import React, { useState, useEffect } from "react"; // Importing React and hooks useState and useEffect
+import { View, Image, Text, StyleSheet, TouchableOpacity, Modal,} from 'react-native'; // Importing necessary components from React Native
+import { DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer'; // Importing navigation drawer components
+import { MaterialCommunityIcons, Feather } from '@expo/vector-icons'; // Importing icons from Expo
+import { useSafeAreaInsets } from 'react-native-safe-area-context'; // Hook to handle safe area insets
+import { useRouter } from 'expo-router'; // Importing router for navigation
 
-export default function DrawerContent(props) {
-    const router = useRouter();
-    const year = new Date().getFullYear();
-    const [modalVisible, setModalVisible] = useState(false);
+export default function DrawerContent(props) { // Defining functional component DrawerContent
+    const router = useRouter(); // Initializing router for navigation
+    const year = new Date().getFullYear(); // Getting the current year dynamically
+    const [modalVisible, setModalVisible] = useState(false); // State to control modal visibility
 
-    const handleLogout = () => {
-        setModalVisible(true);
+    const handleLogout = () => { // Function to handle logout button press
+        setModalVisible(true); // Show the confirmation modal
     };
 
-    const confirmLogout = async () => {
+    const confirmLogout = async () => { // Function to confirm logout
         try {
-            await router.replace('/');
+            await router.replace('/'); // Redirect user to home screen
         } catch (error) {
-          
+            // Handle any errors (currently empty)
         } finally {
-            setModalVisible(false);
+            setModalVisible(false); // Hide the confirmation modal
         }
     };
 
-    const cancelLogout = () => {
-        setModalVisible(false);
+    const cancelLogout = () => { // Function to cancel logout
+        setModalVisible(false); // Hide the confirmation modal
     };
 
-    const { top, bottom } = useSafeAreaInsets();
+    const { top, bottom } = useSafeAreaInsets(); // Getting safe area insets for top and bottom padding
 
     return (
         <View style={{ flex: 1 }}>
@@ -37,57 +37,57 @@ export default function DrawerContent(props) {
                 scrollEnabled={true}
             >
                 <Image 
-                    source={require('../../assets/drawerlogo.png')} 
+                    source={require('../../assets/drawerlogo.png')}  // Displaying logo
                     style={{ height: 60, width: 250, alignSelf: 'flex-start', marginTop: 15 }} 
                 />
-                <DrawerItemList {...props} />
+                <DrawerItemList {...props} /> 
                 <DrawerItem
                     label="Exit"
                     icon={({ color, size }) => (
-                        <Feather name='log-out' color={color} size={18} />
+                        <Feather name='log-out' color={color} size={18} /> // Exit icon
                     )}
                     labelStyle={{ fontFamily: 'QuicksandBold', fontSize: 15, marginBottom: 2 }}
-                    onPress={handleLogout}
+                    onPress={handleLogout} 
                 />
             </DrawerContentScrollView>
             <View
                 style={{
                     justifyContent: 'center',
                     alignItems: 'center',
-                    paddingBottom: 20 + bottom
+                    paddingBottom: 20 + bottom // Add bottom padding for safe area
                 }}
             >
                 <Text style={{ fontFamily: 'QuicksandMedium', fontSize: 10, color: 'gray' }}>
-                    Copyright &copy; {year}. All rights reserved.
+                    Copyright &copy; {year}. All rights reserved. 
                 </Text>
             </View>
 
-            {/* Modal for Logout */}
+            
             <Modal
-                transparent={true}
-                animationType="fade"
-                visible={modalVisible}
-                onRequestClose={cancelLogout}
+                transparent={true} // Make the modal background transparent
+                animationType="fade" // Apply fade animation
+                visible={modalVisible} // Control modal visibility
+                onRequestClose={cancelLogout} // Close modal when back button is pressed
             >
-                <View style={styles.modalOverlay}>
-                    <View style={styles.modalContainer}>
-                        <View style={styles.iconContainer}>
+                <View style={styles.modalOverlay}> 
+                    <View style={styles.modalContainer}> 
+                        <View style={styles.iconContainer}> 
                             <MaterialCommunityIcons name="logout" size={40} color="#6a5be2" />
                         </View>
                         <Text style={styles.modalHeading}>Exit</Text>
-                        <Text style={styles.modalSubtext}>
+                        <Text style={styles.modalSubtext}> 
                             Are you sure you want to exit?
                         </Text>
-                        <View style={styles.buttonContainer}>
+                        <View style={styles.buttonContainer}> 
                             <TouchableOpacity
                                 style={[styles.button, styles.cancelButton]}
-                                onPress={cancelLogout}
+                                onPress={cancelLogout} 
                             >
                                 <Text style={styles.cancelButtonText}>Cancel</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 style={[styles.button, styles.logoutButton]}
-                                onPress={confirmLogout}
+                                onPress={confirmLogout} 
                             >
                                 <Text style={styles.logoutButtonText}>Exit</Text>
                             </TouchableOpacity>
